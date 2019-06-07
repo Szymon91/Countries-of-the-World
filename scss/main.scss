@@ -75,3 +75,30 @@ section#countries-data-container {
         }
     }
 }
+
+.page1 {
+    background: yellow;
+    display: none;
+}
+
+.page2 {
+    background: red;
+    display: none;
+}
+
+.page3 {
+    background: blue;
+    display: none;
+}
+.page4 {
+    background: green;
+    display: none;
+}
+.page5 {
+    background: purple;
+    display: none;
+}
+
+.visible {
+    display: block;
+}

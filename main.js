@@ -1,5 +1,8 @@
 const countriesList = document.querySelector('#countries');
+const nextPageBtn = document.querySelector('#nextPage')
 let countries;
+
+const countriesPopulationList = document.querySelector('#countries-population');
 
 countriesList.addEventListener('change', e => countryInfo(e.target.value))
 
@@ -16,6 +19,8 @@ function getData(countriesData) {
     countriesList.innerHTML = options;
     countriesList.selectedIndex = Math.floor(Math.random() * countriesList.length);
     countryInfo(countriesList[countriesList.selectedIndex].value);
+    
+    populationRankList ()
 }
 
 function countryInfo(countryId) {
@@ -27,4 +32,56 @@ function countryInfo(countryId) {
     document.querySelector('#languages').innerHTML = countryData.languages.map(language => language.name).join(', ');
     document.querySelector('#currencies').innerHTML = countryData.currencies.map(currency => `${currency.name} (${currency.code})`).join(', ');
     document.querySelector('#timezones').innerHTML = countryData.timezones.map(timezone => timezone.slice(3, timezones.lenght)).join(', ');
+}
+
+function populationRankList () {
+    const populationListArr = [];
+
+    countries.forEach(country => {
+        const populationInfoObj = {};
+        populationInfoObj.name = country.name;
+        populationInfoObj.population = country.population;
+        populationListArr.push(populationInfoObj);
+    })
+    
+    sortedList = populationListArr.sort((a,b) => {
+        if(a.population < b.population) {
+            return 1;
+        } else if (b.population < a.population) {
+            return -1;
+        } else {
+            return 0;
+        }
+    })
+
+    sortedList.forEach((item, index )=> {
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${item.name}: ${item.population.toLocaleString()}`;
+        if (index <=49) {
+            li.className ='page1 visible';
+        } else if (index < 100) {
+            li.classList.add('page2');
+        } else if (index < 150) {
+            li.classList.add('page3');
+        } else if (index < 200) {
+            li.classList.add('page4');
+        } else {
+            li.classList.add('page5');
+        }
+        countriesPopulationList.append(li);
+        let counter = 1;
+        const pages = 5;
+        nextPageBtn.addEventListener('click', function() {
+            if (counter < pages) {
+                counter++;
+            } else {
+                counter = 1;
+            }
+            if (li.className == `page${counter}`) {
+                li.classList.add('visible');
+            } else {
+                li.classList.remove('visible');
+            }
+        })
+    }); 
 }
