@@ -99,21 +99,3 @@ function populationRankList () {
         })
     }); 
 }
-
-
-// const input = document.querySelector('input');
-// const spanPoints = document.querySelector('.points');
-
-// function game (name) {
-//     let points = 0;
-//     let lifes = 3;
-//     input.addEventListener('change', (e) => {    
-        
-//         if (e.target.value === countries.name); {
-//             points++
-//         }
-//         console.log(points);
-//         spanPoints.textContent = points;
-//     })
-// }
-// game(countriesList[countriesList.selectedIndex].value)
