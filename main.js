@@ -1,8 +1,9 @@
 const countriesList = document.querySelector('#countries');
-const nextPageBtn = document.querySelector('#nextPage')
-let countries;
-
 const countriesPopulationList = document.querySelector('#countries-population');
+const prevPageBtn = document.querySelector('#prevPage');
+const nextPageBtn = document.querySelector('#nextPage');
+
+let countries;
 
 countriesList.addEventListener('change', e => countryInfo(e.target.value))
 
@@ -56,7 +57,7 @@ function populationRankList () {
 
     sortedList.forEach((item, index )=> {
         const li = document.createElement('li');
-        li.textContent = `${index + 1}. ${item.name}: ${item.population.toLocaleString()}`;
+        li.innerHTML = `${index + 1}. ${item.name} <span>${item.population.toLocaleString()}</span>`;
         if (index <=49) {
             li.className ='page1 visible';
         } else if (index < 100) {
@@ -71,6 +72,19 @@ function populationRankList () {
         countriesPopulationList.append(li);
         let counter = 1;
         const pages = 5;
+
+        prevPageBtn.addEventListener('click', function() {
+            if (counter <= pages && counter > 1) {
+                counter--;
+            } else {
+                counter = 5;
+            }
+            if (li.className == `page${counter}`) {
+                li.classList.add('visible');
+            } else {
+                li.classList.remove('visible');
+            }
+        })
         nextPageBtn.addEventListener('click', function() {
             if (counter < pages) {
                 counter++;
@@ -85,3 +99,21 @@ function populationRankList () {
         })
     }); 
 }
+
+
+// const input = document.querySelector('input');
+// const spanPoints = document.querySelector('.points');
+
+// function game (name) {
+//     let points = 0;
+//     let lifes = 3;
+//     input.addEventListener('change', (e) => {    
+        
+//         if (e.target.value === countries.name); {
+//             points++
+//         }
+//         console.log(points);
+//         spanPoints.textContent = points;
+//     })
+// }
+// game(countriesList[countriesList.selectedIndex].value)

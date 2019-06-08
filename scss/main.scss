@@ -76,29 +76,47 @@ section#countries-data-container {
     }
 }
 
-.page1 {
-    background: yellow;
-    display: none;
+section#countries-population-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    background: rgb(17, 173, 245);
+
+    h3 {
+        padding: 50px 0 15px 150px;
+        font-size: 1.5rem;
+    }
+    
+    ul#countries-population {
+        max-width: 700px;
+        
+        li {
+            font-weight: 700;
+            border-bottom: .5px solid black;
+            border-left: .5px solid black;
+            border-right: .5px solid black;
+            justify-content: space-between;  
+            padding-left: 15px;
+            
+            &:nth-child(50n + 1) {
+                border-top: .5px solid black;
+            }
+            span {
+                display: block;
+                font-weight: 400;
+                border-left: .5px solid black;
+                min-width: 150px;
+                text-align: center;
+            }
+        }
+    }
 }
 
-.page2 {
-    background: red;
-    display: none;
-}
-
-.page3 {
-    background: blue;
-    display: none;
-}
-.page4 {
-    background: green;
-    display: none;
-}
-.page5 {
-    background: purple;
-    display: none;
+@for $i from 1 through 5 {
+    .page#{$i} {
+        display: none;
+    }
 }
 
 .visible {
-    display: block;
+    display: flex;
 }
